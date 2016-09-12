@@ -23,17 +23,19 @@ class GenModelProperties {
     /**
      * @param string[] $arguments
      */
-    public function execute($arguments) {
+    static function execute($arguments) {
+        $genModelProperties = new GenModelProperties();
+
         if (in_array('--overwrite', $arguments)) {
-            $this->overwrite = true;
+            $genModelProperties->overwrite = true;
         }
 
         if (in_array('--help', $arguments) || in_array('--h', $arguments)) {
-            $this->printHelp();
+            $genModelProperties->printHelp();
             exit;
         }
 
-        $this->generateDocBlocks();
+        $genModelProperties->generateDocBlocks();
     }
 
     private function printHelp() {
@@ -135,6 +137,8 @@ class GenModelProperties {
                         continue;
                     }
 
+
+
                     if (!$reflectionClass->isInstantiable()) {
                         // ignore abstract class or interface
                         continue;
@@ -228,5 +232,33 @@ class GenModelProperties {
                 $model->properties[] = $docProperty;
             }
         }
+    }
+
+    static function printConfigTemplate() {
+        print <<<'INFO'
+You are missing a "genModelProperties-config.php" or "config/genModelProperties-config.php" file in your
+project, which is required to get genMdelProperties working. You can use the
+following sample as a template:
+
+<?php
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+// Define the directory where the models reside.
+// Remember to change the value if the config-file is in a config-directory 
+define('MODELS_DIRECTORY', __DIR__ . '/src/Models');
+
+// Define the root namespace of the models
+define('ROOT_NAMESPACE', 'App\Models');
+
+// Load the global settings
+$config    = require_once __DIR__ . '/src/settings.php';
+
+// Boot Eloquent
+$capsule   = new Capsule;
+$capsule->addConnection($config['settings']['db']);
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
+
+INFO;
     }
 }

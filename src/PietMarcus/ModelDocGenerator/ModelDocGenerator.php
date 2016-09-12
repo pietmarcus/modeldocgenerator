@@ -8,7 +8,7 @@
 
 namespace PietMarcus\ModelDocGenerator;
 
-class GenModelProperties {
+class ModelDocGenerator {
 
     /**
      * @var DocModel[]
@@ -24,18 +24,18 @@ class GenModelProperties {
      * @param string[] $arguments
      */
     static function execute($arguments) {
-        $genModelProperties = new GenModelProperties();
+        $modelDocGenerator = new ModelDocGenerator();
 
         if (in_array('--overwrite', $arguments)) {
-            $genModelProperties->overwrite = true;
+            $modelDocGenerator->overwrite = true;
         }
 
         if (in_array('--help', $arguments) || in_array('--h', $arguments)) {
-            $genModelProperties->printHelp();
+            $modelDocGenerator->printHelp();
             exit;
         }
 
-        $genModelProperties->generateDocBlocks();
+        $modelDocGenerator->generateDocBlocks();
     }
 
     private function printHelp() {
@@ -236,8 +236,8 @@ class GenModelProperties {
 
     static function printConfigTemplate() {
         print <<<'INFO'
-You are missing a "genModelProperties-config.php" or "config/genModelProperties-config.php" file in your
-project, which is required to get genMdelProperties working. You can use the
+You are missing a "modelDocGenerator-config.php" or "config/modelDocGenerator-config.php" file in your
+project, which is required to get modelDocGenerator working. You can use the
 following sample as a template:
 
 <?php

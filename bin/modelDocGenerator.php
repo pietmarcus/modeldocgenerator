@@ -6,7 +6,7 @@
  * Time: 19:39
  */
 
-use PietMarcus\ModelDocGenerator\GenModelProperties;
+use PietMarcus\ModelDocGenerator\ModelDocGenerator;
 
 $cwd         = getcwd();
 $files       = array(__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../../../autoload.php');
@@ -27,7 +27,7 @@ if ( ! $loader) {
 }
 
 foreach ($directories as $directory) {
-    $configFile = $directory . DIRECTORY_SEPARATOR . 'genModelProperties-config.php';
+    $configFile = $directory . DIRECTORY_SEPARATOR . 'modelDocGenerator-config.php';
 
     if (file_exists($configFile)) {
         break;
@@ -35,11 +35,11 @@ foreach ($directories as $directory) {
 }
 
 if ( ! file_exists($configFile)) {
-    GenModelProperties::printConfigTemplate();
+    ModelDocGenerator::printConfigTemplate();
 
     exit(1);
 }
 
 require $configFile;
 
-GenModelProperties::execute($argv);
+ModelDocGenerator::execute($argv);

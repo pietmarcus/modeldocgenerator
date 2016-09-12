@@ -8,7 +8,7 @@
       "email" : "pietmarcus@gmail.com"
     }
   ],
-  "bin": ["bin/genModelProperties"],
+  "bin": ["bin/modelDocGenerator"],
   "autoload": {
     "psr-0": { "PietMarcus\\ModelDocGenerator\\": "src/" }
   },

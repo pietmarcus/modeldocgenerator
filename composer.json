@@ -1,7 +1,7 @@
 {
   "name" : "pietmarcus/modeldocgenerator",
   "description" : "PHPDoc generator for Eloquent models",
-  "licence":"MIT",
+  "license":"MIT",
   "authors" : [
     {
       "name" : "Piet Marcus van der Meulen",

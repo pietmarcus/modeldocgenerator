@@ -1,14 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Piet  Marcus
- * Date: 11-9-2016
- * Time: 19:36
- */
 
 namespace PietMarcus\ModelDocGenerator;
 
-
+/**
+ * Class DocProperty
+ * @package PietMarcus\ModelDocGenerator
+ *
+ * Helper object for ModelDocGenerator to store information about properties.
+ */
 class DocProperty
 {
     /**

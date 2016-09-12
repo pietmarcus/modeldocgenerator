@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Piet  Marcus
- * Date: 11-9-2016
- * Time: 19:39
- */
 
 use PietMarcus\ModelDocGenerator\ModelDocGenerator;
 
@@ -14,6 +8,7 @@ $loader      = null;
 $directories = array($cwd, $cwd . DIRECTORY_SEPARATOR . 'config');
 $configFile  = null;
 
+// Try to load the autoloader
 foreach ($files as $file) {
     if (file_exists($file)) {
         $loader = require $file;
@@ -26,6 +21,7 @@ if ( ! $loader) {
     throw new RuntimeException('vendor/autoload.php could not be found. Did you run `php composer.phar install`?');
 }
 
+// Try to load the configuration-file
 foreach ($directories as $directory) {
     $configFile = $directory . DIRECTORY_SEPARATOR . 'modelDocGenerator-config.php';
 
@@ -42,4 +38,5 @@ if ( ! file_exists($configFile)) {
 
 require $configFile;
 
+// Run the package
 ModelDocGenerator::execute($argv);

@@ -1,13 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Piet  Marcus
- * Date: 9-9-2016
- * Time: 11:11
- */
-
 namespace PietMarcus\ModelDocGenerator;
 
+/**
+ * Class ModelDocGenerator
+ * @package PietMarcus\ModelDocGenerator
+ */
 class ModelDocGenerator {
 
     /**
@@ -21,6 +18,8 @@ class ModelDocGenerator {
     var $overwrite = false;
 
     /**
+     * Execute the package
+     *
      * @param string[] $arguments
      */
     static function execute($arguments) {
@@ -38,6 +37,9 @@ class ModelDocGenerator {
         $modelDocGenerator->generateDocBlocks();
     }
 
+    /**
+     * Print the help text.
+     */
     private function printHelp() {
         print "Generate class documentation based on columns in the database." . PHP_EOL .
             "Parameters:" . PHP_EOL .
@@ -45,11 +47,13 @@ class ModelDocGenerator {
             PHP_EOL;
     }
 
+    /**
+     * Generate doc-blocks for the models.
+     */
     private function generateDocBlocks() {
         $this->findModels(MODELS_DIRECTORY);
 
         foreach ($this->models as $model) {
-
             $this->setProperties($model);
 
             $docBlock = $this->generateDocBlock($model);
@@ -172,7 +176,6 @@ class ModelDocGenerator {
         $modelObject = new $model->fullname();
 
         $table = $modelObject->getConnection()->getTablePrefix() . $modelObject->getTable();
-        print PHP_EOL . PHP_EOL . $table . PHP_EOL;
         $schema = $modelObject->getConnection()->getDoctrineSchemaManager($table);
         $databasePlatform = $schema->getDatabasePlatform();
         $databasePlatform->registerDoctrineTypeMapping('enum', 'string');
@@ -234,6 +237,9 @@ class ModelDocGenerator {
         }
     }
 
+    /**
+     * Print information about the configuration-file
+     */
     static function printConfigTemplate() {
         print <<<'INFO'
 You are missing a "modelDocGenerator-config.php" or "config/modelDocGenerator-config.php" file in your

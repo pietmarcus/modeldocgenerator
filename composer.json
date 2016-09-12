@@ -1,0 +1,15 @@
+{
+  "name" : "pietmarcus/modeldocgenerator",
+  "description" : "PHPDoc generator for Eloquent models",
+  "licence":"MIT",
+  "authors" : [
+    {
+      "name" : "Piet Marcus van der Meulen",
+      "email" : "pietmarcus@gmail.com"
+    }
+  ],
+  "bin": ["bin/genModelProperties"],
+  "autoload": {
+    "psr-0": { "PietMarcus\\ModelDocGenerator\\": "src/" }
+  }
+}

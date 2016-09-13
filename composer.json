@@ -13,7 +13,9 @@
     "psr-0": { "PietMarcus\\ModelDocGenerator\\": "src/" }
   },
   "require" : {
-    "doctrine/dbal": "~2.3",
     "illuminate/database": "5.*"
+  },
+  "require-dev": {
+    "doctrine/dbal": "~2.3"
   }
 }

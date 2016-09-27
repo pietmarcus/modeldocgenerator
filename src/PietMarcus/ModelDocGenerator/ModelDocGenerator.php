@@ -110,7 +110,8 @@ class ModelDocGenerator {
             $docBlock .= ' * ' . trim("@property $property->type $property->name $property->comment") . PHP_EOL;
         }
 
-#        ' * @mixin \\Eloquent' . PHP_EOL .
+        $docBlock .= ' * @method static \Illuminate\Database\Query\Builder|' . $docModel->classname . ' find($value)' . PHP_EOL;
+
         $docBlock .=
             ' */';
 

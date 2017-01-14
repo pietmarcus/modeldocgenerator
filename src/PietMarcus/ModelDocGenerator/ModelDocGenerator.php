@@ -111,8 +111,8 @@ class ModelDocGenerator {
         }
 
         $docBlock .= ' *' . PHP_EOL;
-        $docBlock .= ' * @mixin Model' . PHP_EOL;
-        $docBlock .= ' * @mixin Illuminate\Database\Query\Builder' . PHP_EOL;
+        $docBlock .= ' * @mixin \Illuminate\Database\Eloquent\Model' . PHP_EOL;
+        $docBlock .= ' * @mixin \Illuminate\Database\Query\Builder' . PHP_EOL;
 
         $docBlock .=
             ' */';
